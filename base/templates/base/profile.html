@@ -36,6 +36,20 @@
         </div>
 
         {% include 'base/feed_component.html'%}
+        <div class="container">
+          <hr>
+          <div class="roomList__header">
+          <div>
+            <h2>Rooms Liked by {{user.username}}</h2>
+          </div>
+        </div>
+          {% for room in user.fav_rooms.all %}
+              {% include 'base/favourite_list.html'%}
+          {% empty %}
+              <td >No Bookmarked Rooms</td>
+          {% endfor %}
+
+        </div>
       </div>
       <!-- Room List End -->
 
