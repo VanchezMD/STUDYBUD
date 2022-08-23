@@ -1,11 +1,15 @@
+from gc import get_objects
+import profile
+from pydoc_data.topics import topics
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from .models import Room, Topic, Message, User
 from .forms import RoomForm, UserForm, MyUserCreationForm
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -202,3 +206,13 @@ def topicsPage(request):
 def activityPage(request):
     room_messages = Message.objects.all()
     return render(request, 'base/activity.html', {'room_messages': room_messages})
+
+def favouritePost(request, pk):
+    room = get_object_or_404(Room, pk=pk)
+    room_messages = room.message_set.all()
+    participants = room.participants.all()
+    if request.method == 'POST':
+        room.favourite.add(request.user)
+    context = {'room': room, 'room_messages': room_messages,
+               'participants': participants}
+    return render(request, 'base/room.html', context)
