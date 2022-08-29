@@ -18,6 +18,7 @@ urlpatterns = [
     path('delete-room/<str:pk>', views.deleteRoom, name="delete-room"),
     path('delete-message/<str:pk>', views.deleteMessage, name="delete-message"),
     path('favorite-post/<str:pk>/', views.favouritePost, name="favorite-post"),
+    path('delfavpost/<str:pk>/', views.delfavpost, name="delfapost"),
 
 
     path('update-user/', views.updateUser, name="update-user"),

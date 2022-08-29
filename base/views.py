@@ -207,6 +207,7 @@ def activityPage(request):
     room_messages = Message.objects.all()
     return render(request, 'base/activity.html', {'room_messages': room_messages})
 
+
 def favouritePost(request, pk):
     room = get_object_or_404(Room, pk=pk)
     room_messages = room.message_set.all()
@@ -216,3 +217,9 @@ def favouritePost(request, pk):
     context = {'room': room, 'room_messages': room_messages,
                'participants': participants}
     return render(request, 'base/room.html', context)
+
+def delfavpost(request, pk):
+    fav = get_object_or_404(Room, pk=pk)
+    if request.method == 'GET':
+        fav.favourite.clear()
+    return redirect('home')

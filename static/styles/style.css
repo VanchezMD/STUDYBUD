@@ -962,6 +962,13 @@ a {
 .room__topRight svg {
   fill: var(--color-main-light);
 }
+button.room__favourite__btn svg {
+  background-color: var(--color-main-light);
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
 
 .room__header {
   max-height: 30vh;

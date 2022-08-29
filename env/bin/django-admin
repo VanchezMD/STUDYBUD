@@ -1,4 +1,4 @@
-#!/home/starlab/Documents/env/bin/python3
+#!/home/starlab/Documents/studybud/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
